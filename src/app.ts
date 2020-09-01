@@ -31,9 +31,18 @@ button.addEventListener(
   false
 );
 
+const unsubscribe = store.subscribe((state) => {
+  renderTodos(state.todos.data);
+});
+
+// destroy is the button with the class unsubscribe
+destroy.addEventListener("click", unsubscribe, false);
+
 todoList.addEventListener("click", function (event) {
   const target = event.target as HTMLButtonElement;
   if (target.nodeName.toLowerCase() === "button") {
     console.log(target);
   }
 });
+
+store.subscribe((state) => console.log("STATE: ", state));
